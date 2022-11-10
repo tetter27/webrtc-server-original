@@ -6,8 +6,34 @@
 </head>
 <body>
     <h1>Hello WebRTC!!</h1>
+    <table border="1">
+        <tbody>
+            <tr>
+                <td></td>
+                <td>Local Side</td>
+                <td>Remote Side</td>
+            </tr>
+            <tr>
+                <td>Video</td>
+                <td>
+                    <video id="local_video_box" width="640" height="480" style="border: 1px solid black;" autoplay></video>
+                </td>
+                <td>
+                    <video id="remote_video_box" width="640" height="480" style="border: 1px solid black;" autoplay></video>
+                </td>
+            </tr>
+            <tr>
+                <td>SDP</td>
+                <td>
+                    <textarea id="local_sdp_text" rows="10" cols="40" readonly="readonly"></textarea>
+                </td>
+                <td>
+                    <textarea id="remote_sdp_text" rows="10" cols="40"></textarea>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-    <video id="video_box" width="640" height="480" style="border: 1px solid black;" autoplay></video>
 
     <!-- Script -->
     <script src="./userMedia.js"></script>

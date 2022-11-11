@@ -49,9 +49,10 @@ function setupRTCPeerConnectionEventHandler(rtcPeerConnection){
             // If Trickle ICE, initial SDP is sending.
 
             // Paseted OfferSDP to textarea
-            console.log("=> Set OfferSDP in textarea");
+            console.log("=> Set SDP in textarea");
+            console.log("=> SDP type: %s", rtcPeerConnection.localDescription.type);
 
-            pastelocalSDPtoTextarea(rtcPeerConnection);
+            pastelocalSDPtoTextarea(rtcPeerConnection, rtcPeerConnection.localDescription.type);
 
         }
     };
@@ -105,5 +106,8 @@ function setupRTCPeerConnectionEventHandler(rtcPeerConnection){
         console.log("Event : Track");
         console.log("=> stream", event.streams[0]);
         console.log("=> track", event.track);
+
+        displayRemoteMedia(event.streams[0], event.track.kind);
+
     };
 }

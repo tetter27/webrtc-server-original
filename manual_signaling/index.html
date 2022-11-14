@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hello WebRTC</title>
+
+</head>
+<body>
+    <h1>Hello WebRTC!!</h1>
+    <span id="page_role_text">You are...</span>
+    <button id="set_offerer_button" onclick="onclickButton_SetAsOfferer()">Offerer</button>
+    <button id="set_answerer_button"onclick="onclickButton_SetAsAnswerer()">Answerer</button>
+    <br>
+    <br>
+    <table border="1">
+        <tbody>
+            <tr>
+                <td></td>
+                <td>Local Side</td>
+                <td>Remote Side</td>
+            </tr>
+            <tr>
+                <td>Video</td>
+                <td>
+                    <video id="local_video_box" width="640" height="480" style="border: 1px solid black;" autoplay></video>
+                </td>
+                <td>
+                    <video id="remote_video_box" width="640" height="480" style="border: 1px solid black;" autoplay></video>
+                </td>
+            </tr>
+            <tr>
+                <td>SDP</td>
+                <td>
+                    <textarea id="local_sdp_text" rows="10" cols="40" readonly="readonly"></textarea>
+                </td>
+                <td>
+                    <textarea id="remote_sdp_text" rows="10" cols="40"></textarea>
+                    <button onclick="onclickButton_SetRemoteSDP()">Set Remote SDP</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <!-- Script -->
+    <script src="./eventHandler.js"></script>
+    <script src="./userMedia.js"></script>
+
+</body>
+</html>

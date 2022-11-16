@@ -1,4 +1,4 @@
-function setupRTCPeerConnectionEventHandler(rtcPeerConnection){
+function setupRTCPeerConnectionEventHandler(id, rtcPeerConnection){
 
     // Handler for the "Negotiation needed" event
     //   This event occurs when the change that needs session negotiation occurs.
@@ -20,6 +20,7 @@ function setupRTCPeerConnectionEventHandler(rtcPeerConnection){
 
             // If Vanilla ICE, SDP is not sending yet.
             // If Trickle ICE, initial SDP is sending.
+            sendIceCandidate(id, event.candidate);
         }
         else
         {   // There are no ICE candiate => Finalized ICE candidate collection.
@@ -52,7 +53,7 @@ function setupRTCPeerConnectionEventHandler(rtcPeerConnection){
             console.log("=> Set SDP in textarea");
             console.log("=> SDP type: %s", rtcPeerConnection.localDescription.type);
 
-            pastelocalSDPtoTextarea(rtcPeerConnection, rtcPeerConnection.localDescription.type);
+            setLocalSDPtoTextarea(rtcPeerConnection, rtcPeerConnection.localDescription.type);
 
         }
     };

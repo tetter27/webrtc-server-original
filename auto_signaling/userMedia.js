@@ -6,8 +6,7 @@ const elementTextFirebaseApiKey = document.getElementById("firebase_apikey_text"
 const elementTextFirebaseDatabaseUrl = document.getElementById("firebase_url_text");
 const elementTextRoomId = document.getElementById("room_id_text");
 const elementMessageRoom = document.getElementById("room_message")
-const elementButtonSetOfferer = document.getElementById("set_offerer_button");
-const elementButtonSetAnswerer = document.getElementById("set_answerer_button");
+const elementButtonStartConnect = document.getElementById("connect_start_button");
 const elementTextareaLocalSDP = document.getElementById("local_sdp_text");
 const elementTextareaRemoteSDP = document.getElementById("remote_sdp_text");
 
@@ -40,36 +39,31 @@ navigator.mediaDevices.getUserMedia({"video": true, /*"audio": true*/})
 });
 
 
-function onclickButton_SetFirebaseInfoAndStartOfferer(){
-
-    let rId = null
-    console.log("Selected Offerer.");
-    elementTextPageRole.innerHTML = "You are Offerer!";
-
-    pageRole = "offer";
-
-    initCommonly();
-    setRoomId(rId);
-    
-}
-
-
-function onclickButton_SetFirebaseInfoAndStartAnswewer(){
+function onclickButton_ConnectStart(){
 
     let rId = elementTextRoomId.value;
-    if (rId === ""){
-        alert("You must enter room Id created by Offerer.");
-        return;
-    }
+    console.log("Enterd Room ID:");
+    console.log(rId);
 
-    console.log("Selected Answerer.");
-    elementTextPageRole.innerHTML = "You are Answerer!";
+    elementButtonStartConnect.style.visibility = "hidden";
 
-    pageRole = "answer";
+    let apiKey = elementTextFirebaseApiKey.value;
+    let databaseUrl = elementTextFirebaseDatabaseUrl.value;
 
-    initCommonly();
+    initFirebaseInfo(apiKey, databaseUrl);
+
     setRoomId(rId);
-    callMe();
+    pageRole = judgePageRole()
+
+    console.log("Page Role: ", pageRole);
+
+    if (pageRole === "offer"){
+        elementTextPageRole.innerHTML = "You are Offerer!";
+
+    }else if (pageRole === "answer"){
+        elementTextPageRole.innerHTML = "You are Answerer!";
+        callMe();
+    }
 
 }
 
@@ -228,4 +222,5 @@ function pasteRoomId(room){
 function addIceCandidate(id, candidate) {
 
       rtcPeerConnection.addIceCandidate(candidate);
+
   }
